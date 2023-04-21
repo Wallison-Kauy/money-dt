@@ -7,7 +7,7 @@ export function Header(){
 
     <S.Container className="w-full bg-gray-900 h-52 pt-11 px-3">
    
-      <header className="container flex mx-auto w-full h-12 justify-between">
+      <header className="container flex mx-auto h-12 justify-between">
         <Image 
           src={logo.src} 
           alt="Logo DT Money"
@@ -30,7 +30,6 @@ export function Header(){
       </header>
 
     </S.Container>
-  
 
   )
 }
