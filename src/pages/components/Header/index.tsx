@@ -5,9 +5,9 @@ import * as S from "./styles"
 export function Header(){
   return(
 
-    <S.Container className="w-full bg-gray-900 h-52 pt-11 px-3">
+    <S.Container className="w-full bg-gray-900 h-[212px] pt-11 px-3">
    
-      <header className="container flex mx-auto h-12 justify-between">
+      <header className="container flex mx-auto h-12 justify-between max-w-[1120px]">
         <Image 
           src={logo.src} 
           alt="Logo DT Money"
@@ -24,6 +24,7 @@ export function Header(){
             text-xs 
             font-bold
             text-write
+            hover:bg-green-300
           ">
            Nova transação
         </button>
