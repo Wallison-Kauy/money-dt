@@ -30,7 +30,7 @@ export default function Home() {
         <div className="flex w-full flex-col items-center  gap-[56px]">
           <div className="flex h-[272px] w-full max-w-[488px] flex-col  rounded-[1rem] border border-solid border-separation shadow-lg">
             <div className="flex h-[104px] flex-row">
-              <button className="flex h-[104px] w-full max-w-[162px] flex-col items-center gap-[4px] px-2 py-3 ">
+              <button className="flex h-[104px] w-full max-w-[162px] flex-col items-center gap-[4px] px-2 py-3 leading-tight  focus:outline-none  focus-visible:ring active:bg-colorButtonNoActive">
                 <Image
                   src="/map-pin.png"
                   alt="Picture of the author"
@@ -39,7 +39,7 @@ export default function Home() {
                 />
                 <p>Rastrear encomenda</p>
               </button>
-              <button className="flex h-[104px] w-full max-w-[162px] flex-col items-center  gap-[4px] border-b border-l border-solid border-separation bg-colorButtonNoActive px-2 py-3">
+              <button className="flex h-[104px] w-full max-w-[162px] flex-col items-center gap-[4px] border-b border-l border-solid  border-separation px-2 py-3 leading-tight focus:outline-none  focus:ring active:bg-colorButtonNoActive">
                 <Image
                   src="/calculator.png"
                   alt="Picture of the author"
@@ -48,7 +48,7 @@ export default function Home() {
                 />
                 <p>Cotação de frete</p>
               </button>
-              <button className=" flex h-[104px] w-full max-w-[162px] flex-col items-center gap-[4px] rounded-tr-lg border-b border-l border-solid border-separation bg-colorButtonNoActive px-2 py-3">
+              <button className="flex h-[104px] w-full max-w-[162px] flex-col items-center gap-[4px] rounded-tr-lg border-b border-l border-solid border-separation  px-2 py-3 leading-tight focus:outline-none  focus:ring active:bg-colorButtonNoActive">
                 <Image
                   src="/calendar-time.png"
                   alt="Picture of the author"
