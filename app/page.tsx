@@ -2,112 +2,162 @@ import Image from 'next/image'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
+    <div className="container mx-auto flex min-h-screen w-full max-w-[1440px] flex-col md:flex-row ">
+      <div className=" flex w-full max-w-[800px] flex-col justify-between bg-white px-8 py-6">
+        <div className="flex h-12 w-full max-w-[736px] flex-row items-center justify-between gap-8">
+          <Image
+            src="/logo.png"
+            alt="Picture of the author"
+            width={155}
+            height={32}
+          />
+          <div className="flex gap-6">
+            <button>Unidades</button>
+            <button>Trabalhe conosco</button>
+            <button>Atendimento</button>
+          </div>
+          <button className="flex w-[155px] items-center gap-2 rounded-lg bg-gray-2 px-4 py-2">
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
+              src="/profile.png"
+              alt="Picture of the author"
+              width={24}
               height={24}
-              priority
             />
-          </a>
+            <p>Fazer Login</p>
+          </button>
+        </div>
+
+        <div className="flex w-full flex-col items-center  gap-[56px]">
+          <div className="flex h-[272px] w-full max-w-[488px] flex-col  rounded-[1rem] border border-solid border-separation shadow-lg">
+            <div className="flex h-[104px] flex-row">
+              <button className="flex h-[104px] w-full max-w-[162px] flex-col items-center gap-[4px] px-2 py-3 ">
+                <Image
+                  src="/map-pin.png"
+                  alt="Picture of the author"
+                  width={40}
+                  height={40}
+                />
+                <p>Rastrear encomenda</p>
+              </button>
+              <button className="flex h-[104px] w-full max-w-[162px] flex-col items-center  gap-[4px] border-b border-l border-solid border-separation bg-colorButtonNoActive px-2 py-3">
+                <Image
+                  src="/calculator.png"
+                  alt="Picture of the author"
+                  width={40}
+                  height={40}
+                />
+                <p>Cotação de frete</p>
+              </button>
+              <button className=" flex h-[104px] w-full max-w-[162px] flex-col items-center gap-[4px] rounded-tr-lg border-b border-l border-solid border-separation bg-colorButtonNoActive px-2 py-3">
+                <Image
+                  src="/calendar-time.png"
+                  alt="Picture of the author"
+                  width={40}
+                  height={40}
+                />
+                <p>Agedar coleta</p>
+              </button>
+            </div>
+
+            <div className="flex w-full flex-col gap-4 p-6">
+              <input
+                placeholder="CNPJ ou CPF"
+                className="h-[56px] w-full rounded-[0.5rem] border border-solid border-inputSeparator px-4 py-2"
+              />
+              <button className="w-full rounded-[0.5rem] bg-colorButton px-4 py-2 text-white">
+                Buscar encomenda
+              </button>
+            </div>
+          </div>
+
+          <div className="flex w-full flex-col items-center gap-[32px] ">
+            <h2 className="text-2xl font-medium">Mais ferramentas</h2>
+            <div className="grid grid-cols-3 items-center gap-6 ">
+              <button className="flex h-[106px] w-[128px] max-w-[128px] grow flex-col  items-center justify-center gap-[4px] rounded-[1rem] bg-colorButtonNoActive px-2 py-3 leading-tight ">
+                <Image
+                  src="/file-check.png"
+                  alt="Picture of the author"
+                  width={40}
+                  height={40}
+                />
+                <p>Comprovante de entrega</p>
+              </button>
+              <button className="flex h-[106px] w-[128px] max-w-[128px] grow  flex-col items-center justify-center gap-[4px] rounded-[1rem] bg-colorButtonNoActive px-2 py-3 leading-tight">
+                <Image
+                  src="/receipt-2.png"
+                  alt="Picture of the author"
+                  width={40}
+                  height={40}
+                />
+                <p>Faturas</p>
+              </button>
+              <button className="flex h-[106px] w-[128px] max-w-[128px] grow  flex-col items-center justify-center gap-[4px] rounded-[1rem] bg-colorButtonNoActive px-2 py-3 leading-tight">
+                <Image
+                  src="/calendar-time.png"
+                  alt="Picture of the author"
+                  width={40}
+                  height={40}
+                />
+                <p>Prazo de entrega</p>
+              </button>
+              <button className="flex h-[106px] w-[128px] max-w-[128px] grow  flex-col items-center justify-center gap-[4px] rounded-[1rem] bg-colorButtonNoActive px-2 py-3 leading-tight">
+                <Image
+                  src="/script-plus.png"
+                  alt="Picture of the author"
+                  width={40}
+                  height={40}
+                />
+                <p>Gerar declaração</p>
+              </button>
+              <button className="flex h-[106px] w-[128px] max-w-[128px] grow  flex-col items-center justify-center gap-[4px] rounded-[1rem] bg-colorButtonNoActive px-2 py-3 leading-tight">
+                <Image
+                  src="/alert-triangle.png"
+                  alt="Picture of the author"
+                  width={40}
+                  height={40}
+                />
+                <p>Clientes com TDE</p>
+              </button>
+              <button className="flex h-[106px] w-[128px] max-w-[128px] grow  flex-col items-center justify-center gap-[4px] rounded-[1rem] bg-colorButtonNoActive px-2 py-3 leading-tight">
+                <Image
+                  src="/clipboard-text.png"
+                  alt="Picture of the author"
+                  width={40}
+                  height={40}
+                />
+                <p>Documentação legal</p>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <footer className="flex flex-row justify-between ">
+          <div className="flex h-[16px] items-center justify-center gap-2">
+            <a>Termos de uso</a>
+            <Image
+              src="/Ellipse.png"
+              alt="Picture of the author"
+              width={4}
+              height={4}
+            />
+            <a>Políticas de privacidade</a>
+          </div>
+          <div className="flex h-[16px] items-center justify-center gap-2">
+            <p>Backlog © 2023 - Todos os direitos reservados</p>
+          </div>
+        </footer>
+      </div>
+
+      <div className="flex w-full max-w-screen-sm">
+        <div className=" relative w-full ">
+          <Image
+            src="/image.png"
+            alt="Picture of the author"
+            layout="fill"
+            objectFit="cover"
+          />
         </div>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   )
 }

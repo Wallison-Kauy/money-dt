@@ -1,0 +1,76 @@
+export class TrackingAPI {
+  constructor(private http: HttpClient) {
+    // construtor
+  }
+
+  getLoggedOutCnpj(cnpj: string) {
+    // Logica para pegar o CNPJ do usuário logado
+  }
+}
+
+class cmsAPI {
+  constructor(private http: HttpClient) {
+    // construtor
+  }
+
+  saveTracking() {
+    // Logica para salvar o rastreamento no CMS
+  }
+}
+
+
+
+function sendNotificationSACFlow(message: string): void {
+  // Implementação para notificar por SACFlow
+  // ...
+  console.log('Notificação enviada pelo SACFlow:', message)
+}
+
+function sendNotificationEmail(message: string): void {
+  // Implementação para notificar por e-mail
+  // ...
+  console.log('Notificação enviada por e-mail:', message)
+  function sendEmailSender() {
+    // Implementação para enviar e-mail
+  }
+
+  return {
+    sendEmailSender,
+  }
+}
+
+function notifyService() {
+  function sacflow(message: string): void {
+    sendNotificationSACFlow(message)
+  }
+
+  function email(message: string): void {
+    sendNotificationEmail(message)
+  }
+
+  return {
+    sacflow,
+    email,
+  }
+}
+
+
+export function trackingService() {
+  function saveTracking() {
+    const trackingAPI = new TrackingAPI()
+    const cmsAPI = new cmsAPI()
+    const notifyWhatsapp = notifyService()
+
+    const responseTracnking = trackingAPI.getLoggedOutCnpj(cnpj)
+    cmsAPI.saveTracking(responseTracnking)
+    notifyWhatsapp.sacflow('Teste')
+  }
+
+  return {
+    saveTracking,
+  }
+}
+
+const service = notifyService()
+
+service.email('Teste').sendEmailSender()
