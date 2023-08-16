@@ -17,10 +17,13 @@ module.exports = {
     },
     extend: {
       colors: {
+        greenDT: {
+          dark: "#015F43",
+          default: "#00875F",
+          light: "#00B37E",
+        },
         backgroundIngnite: "#202024",
-        greenMid: "#00875F",
         tableRowColor: "#29292E",
-        greenMidHover: "#00B37E",
         textCard: "#C4C4CC",
         searchText: "#7C7C8A",
         priceCard: "#E1E1E6",
