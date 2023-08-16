@@ -9,7 +9,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { TransactionProps, useTransactionStore } from "@/store/transactions";
-import { SearchTransactions } from "../SearchTrasactions";
 import { useCallback, useEffect, useState } from "react";
 import { debounce } from "@/utils/debouce";
 
@@ -56,35 +55,41 @@ export const TableTransactions = ({ transactions }: TableTransactionsProps) => {
           onChange={(e) => setSearchValue(e.target.value)}
         />
       </div>
-      <Table className="text-white">
-        <TableBody className="flex  flex-col gap-4">
-          {displayedTransactions?.map((transaction) => (
-            <TableRow
-              className="flex bg-tableRowColor text-base text-textCard justify-between"
-              key={transaction.id}
-            >
-              <TableCell className="font-medium w-[150px]">
-                {transaction.title}
-              </TableCell>
-              <TableCell
-                className={`text-right w-[250px] justify-center flex ${
-                  transaction.type == "income"
-                    ? "text-greenDT-light"
-                    : "text-red-400"
-                }`}
+      {displayedTransactions && displayedTransactions?.length > 0 ? (
+        <Table className="text-white">
+          <TableBody className="flex  flex-col gap-4">
+            {displayedTransactions?.map((transaction) => (
+              <TableRow
+                className="flex bg-tableRowColor text-base text-textCard justify-between"
+                key={transaction.id}
               >
-                R$ {transaction.amount}
-              </TableCell>
-              <TableCell className="w-[150px]">
-                {transaction.category}
-              </TableCell>
-              <TableCell className="text-right w-[150px] items-center flex">
-                {new Date(transaction?.createdAt).toLocaleDateString("pt-BR")}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+                <TableCell className="font-medium w-[150px]">
+                  {transaction.title}
+                </TableCell>
+                <TableCell
+                  className={`text-right w-[250px] justify-center flex ${
+                    transaction.type == "income"
+                      ? "text-greenDT-light"
+                      : "text-red-400"
+                  }`}
+                >
+                  R$ {transaction.amount}
+                </TableCell>
+                <TableCell className="w-[150px]">
+                  {transaction.category}
+                </TableCell>
+                <TableCell className="text-right w-[150px] items-center flex">
+                  {new Date(transaction?.createdAt).toLocaleDateString("pt-BR")}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      ) : (
+        <div className="flex w-full justify-center items-center">
+          <p className="text-white text-lg">Nenhuma transação encontrada</p>
+        </div>
+      )}
     </>
   );
 };
