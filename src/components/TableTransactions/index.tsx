@@ -10,20 +10,18 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useTransactionStore } from "@/store/transactions";
+import useStore from "@/store/transactionsStore";
 
 export const TableTransactions = () => {
-  const {
-    state: { transactions },
-  } = useTransactionStore();
-
-  // const sortedTransactions = transactions.sort(
-  //   (a, b) => b.createdAt.getTime() - a.createdAt.getTime(),
-  // );
+  const transactionsPersistence = useStore(
+    useTransactionStore,
+    (state) => state.transactions,
+  );
 
   return (
     <Table className="text-white">
       <TableBody className="flex  flex-col gap-4">
-        {transactions.map((transaction) => (
+        {transactionsPersistence?.map((transaction) => (
           <TableRow
             className="flex bg-tableRowColor text-base text-textCard justify-between"
             key={transaction.id}
@@ -42,7 +40,7 @@ export const TableTransactions = () => {
             </TableCell>
             <TableCell className="w-[150px]">{transaction.category}</TableCell>
             <TableCell className="text-right w-[150px] items-center flex">
-              {transaction.createdAt.toLocaleDateString("pt-BR")}
+              {/* {transaction?.createdAt?.toLocaleDateString("pt-BR")} */}
             </TableCell>
           </TableRow>
         ))}

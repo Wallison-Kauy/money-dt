@@ -19,9 +19,7 @@ import { useForm, Controller } from "react-hook-form";
 import { Label } from "@/components/ui/label";
 
 export const TransactionModal = () => {
-  const {
-    actions: { addTransaction },
-  } = useTransactionStore();
+  const { addTransaction } = useTransactionStore();
   const { register, handleSubmit, control, watch, reset } = useForm();
 
   const [transactionType, setTransactionType] = useState<"income" | "outcome">(

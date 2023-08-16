@@ -1,4 +1,5 @@
-import { create } from "zustand";
+import { create, StateCreator } from "zustand";
+import { createJSONStorage, persist, PersistOptions } from "zustand/middleware";
 
 export type TransactionProps = {
   id: string;
@@ -15,31 +16,59 @@ type ActionsProps = {
 };
 
 type StoreProps = {
-  state: {
-    transactions: TransactionProps[];
-  };
-  actions: ActionsProps;
+  transactions: TransactionProps[];
+  addTransaction: (Transaction: TransactionProps) => void;
+  removeTransaction: (id: string) => void;
 };
 
-export const useTransactionStore = create<StoreProps>((set) => ({
-  state: {
-    transactions: [],
-  },
-  actions: {
-    addTransaction: (transaction) =>
-      set((state) => ({
-        state: { transactions: [...state.state.transactions, transaction] },
-        // ...state,
-        // transactions: [...state.state.transactions, transaction],
-      })),
+type MyPersist = (
+  config: StateCreator<StoreProps>,
+  options: PersistOptions<StoreProps>,
+) => StateCreator<StoreProps>;
 
-    removeTransaction: (id) =>
-      set((state) => ({
-        state: {
-          transactions: state.state.transactions.filter(
+export const useTransactionStore = create<StoreProps, []>(
+  (persist as MyPersist)(
+    (set): StoreProps => ({
+      transactions: [],
+
+      addTransaction: (transaction) =>
+        set((state) => ({
+          transactions: [...state.transactions, transaction],
+        })),
+
+      removeTransaction: (id) =>
+        set((state) => ({
+          transactions: state.transactions.filter(
             (transaction) => transaction.id !== id,
           ),
-        },
-      })),
-  },
-}));
+        })),
+    }),
+    {
+      name: "transaction",
+      storage: createJSONStorage(() => localStorage),
+    },
+  ),
+);
+
+// export const useTransactionStore = create<StoreProps>((set) => ({
+//   state: {
+//     transactions: [],
+//   },
+//   actions: {
+//     addTransaction: (transaction) =>
+//       set((state) => ({
+//         state: { transactions: [...state.state.transactions, transaction] },
+//         // ...state,
+//         // transactions: [...state.state.transactions, transaction],
+//       })),
+
+//     removeTransaction: (id) =>
+//       set((state) => ({
+//         state: {
+//           transactions: state.state.transactions.filter(
+//             (transaction) => transaction.id !== id,
+//           ),
+//         },
+//       })),
+//   },
+// }));
