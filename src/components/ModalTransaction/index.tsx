@@ -21,7 +21,6 @@ import { Label } from "@/components/ui/label";
 export const TransactionModal = () => {
   const { addTransaction } = useTransactionStore();
   const { register, handleSubmit, control, watch, reset } = useForm();
-
   const [transactionType, setTransactionType] = useState<"income" | "outcome">(
     "income",
   );
@@ -45,7 +44,7 @@ export const TransactionModal = () => {
     // });
 
     addTransaction(newTransaction);
-
+    setTransactionType("income");
     reset();
   };
 
@@ -136,7 +135,7 @@ export const TransactionModal = () => {
               </RadioGroupItem>
             </div>
           </RadioGroup>
-          <DialogFooter className="items-center sm:justify-center">
+          <DialogFooter className="items-center sm:justify-center mt-4">
             <button
               type="submit"
               className="w-full rounded-lg bg-greenDT-default px-5 py-4 font-bold text-white hover:bg-greenDT-light"
