@@ -15,18 +15,19 @@ import { TransactionProps, useTransactionStore } from "@/store/transactions";
 import Image from "next/image";
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { useToast } from "@/components/ui/use-toast";
+// import { useToast } from "@/components/ui/use-toast";
+import { Label } from "@/components/ui/label";
 
 export const TransactionModal = () => {
   const {
     actions: { addTransaction },
   } = useTransactionStore();
-  const { register, handleSubmit, control, watch } = useForm();
+  const { register, handleSubmit, control, watch, reset } = useForm();
 
   const [transactionType, setTransactionType] = useState<"income" | "outcome">(
     "income",
   );
-  const { toast } = useToast();
+  // const { toast } = useToast();
 
   const onSubmit = (data: any) => {
     console.log(data, transactionType);
@@ -40,12 +41,14 @@ export const TransactionModal = () => {
       type: transactionType,
     };
 
-    toast({
-      description: "Transação adicionada",
-      duration: 3000,
-    });
+    // toast({
+    //   description: "Transação adicionada",
+    //   duration: 3000,
+    // });
 
     addTransaction(newTransaction);
+
+    reset();
   };
 
   return (
@@ -61,20 +64,32 @@ export const TransactionModal = () => {
           className="mt-6 flex flex-col gap-4"
           onSubmit={handleSubmit(onSubmit)}
         >
+          <div className="flex flex-col">
+            <Label htmlFor="option-one" className="text-white">
+              Descrição
+            </Label>
+          </div>
+
           <input
             type="text"
             required
             className="flex w-full rounded-lg bg-backgroud2 p-4 text-lg text-searchText"
-            placeholder="Descrição"
+            placeholder="Insira uma descrição para sua transação"
             {...register("title")}
           />
+          <Label htmlFor="option-one" className="text-white">
+            Preço
+          </Label>
           <input
-            type="text"
+            type="number"
             required
             {...register("amount")}
             className="flex w-full rounded-lg bg-backgroud2 p-4 text-lg text-searchText"
-            placeholder="Preço"
+            placeholder="Insira um preço para sua transação"
           />
+          <Label htmlFor="option-one" className="text-white">
+            Categoria
+          </Label>
           <input
             type="text"
             required

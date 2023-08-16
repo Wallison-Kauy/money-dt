@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 interface WrapperProps {
   children: React.ReactNode;
@@ -10,7 +12,7 @@ export const Wrapper = ({ children, className, ...props }: WrapperProps) => {
       {...props}
       className={cn(
         "text-grayRo container mx-auto  flex w-full max-w-[1220px] flex-col	justify-between gap-12",
-        className
+        className,
       )}
     >
       {children}

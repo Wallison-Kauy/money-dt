@@ -29,6 +29,9 @@ const Sumarry = () => {
         title="Total"
         price={totalIncome - totalOutcome}
         logo="/total.svg"
+        className={
+          totalIncome - totalOutcome < 0 ? "bg-red-900" : "bg-greenDT-default"
+        }
       />
     </div>
   );

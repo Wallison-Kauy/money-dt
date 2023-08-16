@@ -1,14 +1,24 @@
+"use client";
+
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 interface cardProps {
   title: string;
   price: number;
   logo: string;
+  className?: string;
 }
 
-const Card = ({ title, price, logo }: cardProps) => {
+const Card = ({ title, price, logo, className, ...rest }: cardProps) => {
   return (
-    <div className="flex w-full max-w-[364px] flex-col gap-3 rounded-md bg-backgroudCard px-8 py-6">
+    <div
+      {...rest}
+      className={cn(
+        "flex w-full max-w-[364px] flex-col gap-3 rounded-md bg-backgroudCard px-8 py-6",
+        className,
+      )}
+    >
       <div className="flex w-full flex-row items-center justify-between ">
         <span className="text-base text-textCard">{title}</span>
         <Image src={logo} width={32} height={32} alt="entrada" />

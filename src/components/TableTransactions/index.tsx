@@ -16,14 +16,14 @@ export const TableTransactions = () => {
     state: { transactions },
   } = useTransactionStore();
 
-  const sortedTransactions = transactions.sort(
-    (a, b) => b.createdAt.getTime() - a.createdAt.getTime(),
-  );
+  // const sortedTransactions = transactions.sort(
+  //   (a, b) => b.createdAt.getTime() - a.createdAt.getTime(),
+  // );
 
   return (
     <Table className="text-white">
       <TableBody className="flex  flex-col gap-4">
-        {sortedTransactions.map((transaction) => (
+        {transactions.map((transaction) => (
           <TableRow
             className="flex bg-tableRowColor text-base text-textCard justify-between"
             key={transaction.id}

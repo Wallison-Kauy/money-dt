@@ -1,3 +1,5 @@
+"use client";
+
 export const SearchTransactions = () => {
   return (
     <div className="flex flex-row gap-4">
