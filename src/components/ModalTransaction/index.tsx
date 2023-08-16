@@ -16,7 +16,7 @@ import { TransactionProps, useTransactionStore } from "@/store/transactions";
 import Image from "next/image";
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-// import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/components/ui/use-toast";
 import { Label } from "@/components/ui/label";
 
 export const TransactionModal = () => {
@@ -26,7 +26,7 @@ export const TransactionModal = () => {
   const [transactionType, setTransactionType] = useState<"income" | "outcome">(
     "income",
   );
-  // const { toast } = useToast();
+  const { toast } = useToast();
 
   const onSubmit = (data: any) => {
     console.log(data, transactionType);
@@ -40,10 +40,10 @@ export const TransactionModal = () => {
       type: transactionType,
     };
 
-    // toast({
-    //   description: "Transação adicionada",
-    //   duration: 3000,
-    // });
+    toast({
+      description: "Transação adicionada",
+      duration: 3000,
+    });
 
     addTransaction(newTransaction);
     setTransactionType("income");
