@@ -28,9 +28,7 @@ const Sumarry = () => {
 
   return (
     <div className="-mt-[80px] flex w-full flex-row gap-8">
-            
-            
-            <Card
+      <Card
         title="Entradas"
         price={totalIncomePersistence}
         logo="/entradas.svg"
