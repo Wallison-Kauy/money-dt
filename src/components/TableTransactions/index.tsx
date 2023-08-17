@@ -15,12 +15,16 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuPortal,
+  DropdownMenuSub,
 } from "@/components/ui/dropdown-menu"
 import { TransactionProps, useTransactionStore } from "@/store/transactions";
 import { useCallback, useEffect, useState } from "react";
 import { debounce } from "@/utils/debouce";
 import { Menu, Pencil, Trash } from "lucide-react";
 import { useToast } from "../ui/use-toast";
+import { TransactionModalEdit } from "../ModalTransactionEdit";
+import { DropdownMenuSubTrigger } from "@radix-ui/react-dropdown-menu";
 
 
 interface TableTransactionsProps {
@@ -113,13 +117,15 @@ export const TableTransactions = ({ transactions }: TableTransactionsProps) => {
                       </div>
 
                     </DropdownMenuItem>
-
-                    {/* <DropdownMenuItem className="flex flex-row w-full hover:cursor-pointer">
-                      <div className="w-full flex flex-row gap-1 items-center">
-                        <Pencil  size={16}/> 
-                        <p>Editar</p>
-                      </div>
-                    </DropdownMenuItem> */}
+                    <DropdownMenuSub> 
+                      <DropdownMenuSubTrigger className="flex flex-row w-full hover:cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
+                        <div className="w-full flex flex-row gap-1 items-center">
+                          <Pencil  size={16}/> 
+                          <TransactionModalEdit id={transaction.id}/>
+                        </div>       
+                      </DropdownMenuSubTrigger>
+                    </DropdownMenuSub>
+                   
                  </DropdownMenuContent>
                 </DropdownMenu>
                 </TableCell>
