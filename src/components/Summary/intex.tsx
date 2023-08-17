@@ -1,22 +1,19 @@
-"use client";
-import useStore from "@/store/transactionsStore";
 import Card from "../Card";
-import { useTransactionStore } from "@/store/transactions";
+import { TransactionProps, useTransactionStore } from "@/store/transactions";
 
-const Sumarry = () => {
-  const transactionsPersistence = useStore(
-    useTransactionStore,
-    (state) => state.transactions,
-  );
+interface SummaryProps {
+  transactions: TransactionProps[] | undefined;
+}
 
-  const totalIncome = transactionsPersistence?.reduce((acc, transaction) => {
+const Sumarry = ({ transactions }: SummaryProps) => {
+  const totalIncome = transactions?.reduce((acc, transaction) => {
     if (transaction.type === "income") {
       return acc + transaction.amount;
     }
     return acc;
   }, 0);
 
-  const totalOutcome = transactionsPersistence?.reduce((acc, transaction) => {
+  const totalOutcome = transactions?.reduce((acc, transaction) => {
     if (transaction.type === "outcome") {
       return acc + transaction.amount;
     }
@@ -42,11 +39,11 @@ const Sumarry = () => {
         title="Total"
         price={totalIncomePersistence - totalOutcomePersistence}
         logo="/total.svg"
-        className={
+        className={` ${
           totalIncomePersistence - totalOutcomePersistence < 0
             ? "bg-red-900"
             : "bg-greenDT-default"
-        }
+        } font-bold`}
       />
     </div>
   );

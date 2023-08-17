@@ -22,6 +22,9 @@ module.exports = {
           default: "#00875F",
           light: "#00B37E",
         },
+        redDT: {
+          dark: "#AA2834",
+        },
         backgroundIngnite: "#202024",
         tableRowColor: "#29292E",
         textCard: "#C4C4CC",

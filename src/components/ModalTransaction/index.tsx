@@ -11,21 +11,22 @@ import {
 } from "@/components/ui/dialog";
 
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+
 import { TransactionProps, useTransactionStore } from "@/store/transactions";
 import Image from "next/image";
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-// import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/components/ui/use-toast";
 import { Label } from "@/components/ui/label";
 
 export const TransactionModal = () => {
   const { addTransaction } = useTransactionStore();
+  const [open, setOpen] = useState(false);
   const { register, handleSubmit, control, watch, reset } = useForm();
-
   const [transactionType, setTransactionType] = useState<"income" | "outcome">(
     "income",
   );
-  // const { toast } = useToast();
+  const { toast } = useToast();
 
   const onSubmit = (data: any) => {
     console.log(data, transactionType);
@@ -39,18 +40,19 @@ export const TransactionModal = () => {
       type: transactionType,
     };
 
-    // toast({
-    //   description: "Transação adicionada",
-    //   duration: 3000,
-    // });
+    toast({
+      description: "Transação adicionada",
+      duration: 3000,
+    });
 
     addTransaction(newTransaction);
-
+    setTransactionType("income");
     reset();
+    setOpen(false);
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger className="rounded-lg bg-greenDT-default px-5 py-4 text-base font-bold text-white hover:bg-greenDT-light">
         Nova transação
       </DialogTrigger>
@@ -104,7 +106,7 @@ export const TransactionModal = () => {
                   setTransactionType("income");
                 }}
                 id="income"
-                className="flex flex-row w-[212px] bg-tableRowColor items-center justify-center gap-3 p-3 text-white rounded-md border-none data-[state=checked]:bg-green-900 data-[state=checked]:text-write "
+                className="flex flex-row w-[212px] bg-tableRowColor items-center justify-center gap-3 p-3 text-white rounded-md border-none data-[state=checked]:bg-greenDT-dark data-[state=checked]:text-write "
               >
                 <Image
                   src="./entradas.svg"
@@ -123,26 +125,25 @@ export const TransactionModal = () => {
                 onClick={() => {
                   setTransactionType("outcome");
                 }}
-                className="flex flex-row w-[212px] bg-tableRowColor items-center justify-center gap-3 p-3 text-white rounded-md border-none data-[state=checked]:bg-red-900 data-[state=checked]:text-write"
+                className="flex flex-row w-[212px] bg-tableRowColor items-center justify-center gap-3 p-3 text-white rounded-md border-none data-[state=checked]:bg-redDT-dark data-[state=checked]:stroke-white"
               >
                 <Image
                   src="./despesas.svg"
                   width={32}
                   height={32}
                   alt="entrada"
-                  className="data-[state=checked]:text-white"
+                  className="data-[state=checked]:bg-white"
                 />
                 Saídas
               </RadioGroupItem>
             </div>
           </RadioGroup>
-          <DialogFooter className="items-center sm:justify-center">
+          <DialogFooter className="items-center sm:justify-center mt-4">
             <button
               type="submit"
-              className="w-full rounded-lg bg-greenDT-default px-5 py-4 font-bold text-white hover:bg-greenDT-light"
+              className="w-full rounded-lg bg-greenDT-default px-5 py-4 font-bold text-white hover:bg-greenDT-light "
             >
-              {" "}
-              Cadastrar{" "}
+              Cadastrar
             </button>
           </DialogFooter>
         </form>
