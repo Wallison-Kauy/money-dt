@@ -114,12 +114,12 @@ export const TableTransactions = ({ transactions }: TableTransactionsProps) => {
 
                     </DropdownMenuItem>
 
-                    <DropdownMenuItem className="flex flex-row w-full hover:cursor-pointer">
+                    {/* <DropdownMenuItem className="flex flex-row w-full hover:cursor-pointer">
                       <div className="w-full flex flex-row gap-1 items-center">
                         <Pencil  size={16}/> 
                         <p>Editar</p>
                       </div>
-                    </DropdownMenuItem>
+                    </DropdownMenuItem> */}
                  </DropdownMenuContent>
                 </DropdownMenu>
                 </TableCell>
