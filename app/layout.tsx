@@ -18,9 +18,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
-      <Suspense fallback={<div>Loading...</div>}>
+       <Suspense fallback={<div>Loading...</div>}>
         <DynamicToaster />
-      </Suspense>
+      </Suspense> 
     </html>
   );
 }

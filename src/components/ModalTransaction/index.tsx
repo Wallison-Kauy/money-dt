@@ -40,8 +40,8 @@ export const TransactionModal = () => {
       type: transactionType,
     };
 
-    toast({
-      description: "Transação adicionada",
+     toast({
+       description: "Transação adicionada",
       duration: 3000,
     });
 

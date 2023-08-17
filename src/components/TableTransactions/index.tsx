@@ -8,10 +8,18 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { TransactionProps, useTransactionStore } from "@/store/transactions";
 import { useCallback, useEffect, useState } from "react";
 import { debounce } from "@/utils/debouce";
-import { Trash } from "lucide-react";
+import { Menu, Pencil, Trash } from "lucide-react";
 import { useToast } from "../ui/use-toast";
 
 
@@ -87,12 +95,33 @@ export const TableTransactions = ({ transactions }: TableTransactionsProps) => {
                   {new Date(transaction?.createdAt).toLocaleDateString("pt-BR")}
                 </TableCell>
                 <TableCell className="flex text-right items-center  hover:cursor-pointer" 
-                onClick={() => {
-                  removeTransaction(transaction.id)
-                  toast({description: "Transação removida",duration: 3000,});
-                }
-                }>
-                  <Trash className="hover:text-red-500" size={16}/>
+                >
+                 <DropdownMenu>
+                  <DropdownMenuTrigger> <Menu /></DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuLabel>Opções</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem  className="flex flex-row w-full hover:cursor-pointer" 
+                      onClick={() => {
+                      removeTransaction(transaction.id)
+                      toast({description: "Transação removida",duration: 3000,});
+                      }
+                     }>
+                      <div className="w-full flex flex-row gap-1 items-center hover:text-red-500">
+                      <Trash  size={16}/> 
+                      <p>Excluir</p>
+                      </div>
+
+                    </DropdownMenuItem>
+
+                    <DropdownMenuItem className="flex flex-row w-full hover:cursor-pointer">
+                      <div className="w-full flex flex-row gap-1 items-center">
+                        <Pencil  size={16}/> 
+                        <p>Editar</p>
+                      </div>
+                    </DropdownMenuItem>
+                 </DropdownMenuContent>
+                </DropdownMenu>
                 </TableCell>
               </TableRow>
             ))}

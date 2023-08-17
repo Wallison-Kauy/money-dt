@@ -19,6 +19,7 @@ type StoreProps = {
   transactions: TransactionProps[];
   addTransaction: (Transaction: TransactionProps) => void;
   removeTransaction: (id: string) => void;
+  updateTransaction: (id: string, updatedTransaction: Partial<TransactionProps>) => void;
 };
 
 type MyPersist = (
@@ -42,6 +43,17 @@ export const useTransactionStore = create<StoreProps, []>(
             (transaction) => transaction.id !== id,
           ),
         })),
+
+        updateTransaction: (id, updatedTransaction) => {
+          set((state) => ({
+            transactions: state.transactions.map((transaction) => {
+              if (transaction.id === id) {
+                return { ...transaction, ...updatedTransaction };
+              }
+              return transaction;
+            }),
+          }));
+        }
     }),
     {
       name: "transaction",
