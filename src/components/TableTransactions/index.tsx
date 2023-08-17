@@ -12,12 +12,15 @@ import { TransactionProps, useTransactionStore } from "@/store/transactions";
 import { useCallback, useEffect, useState } from "react";
 import { debounce } from "@/utils/debouce";
 import { Trash } from "lucide-react";
+import { useToast } from "../ui/use-toast";
+
 
 interface TableTransactionsProps {
   transactions: TransactionProps[] | undefined;
 }
 
 export const TableTransactions = ({ transactions }: TableTransactionsProps) => {
+  const { toast } = useToast();
   const { removeTransaction } = useTransactionStore();
   const [searchValue, setSearchValue] = useState("");
   const [displayedTransactions, setDisplayedTransactions] =
@@ -83,7 +86,12 @@ export const TableTransactions = ({ transactions }: TableTransactionsProps) => {
                 <TableCell className="text-right w-[150px] items-center flex">
                   {new Date(transaction?.createdAt).toLocaleDateString("pt-BR")}
                 </TableCell>
-                <TableCell className="flex text-right items-center  hover:cursor-pointer" onClick={() => removeTransaction(transaction.id)}>
+                <TableCell className="flex text-right items-center  hover:cursor-pointer" 
+                onClick={() => {
+                  removeTransaction(transaction.id)
+                  toast({description: "Transação removida",duration: 3000,});
+                }
+                }>
                   <Trash className="hover:text-red-500" size={16}/>
                 </TableCell>
               </TableRow>
