@@ -11,12 +11,14 @@ import {
 import { TransactionProps, useTransactionStore } from "@/store/transactions";
 import { useCallback, useEffect, useState } from "react";
 import { debounce } from "@/utils/debouce";
+import { Trash } from "lucide-react";
 
 interface TableTransactionsProps {
   transactions: TransactionProps[] | undefined;
 }
 
 export const TableTransactions = ({ transactions }: TableTransactionsProps) => {
+  const { removeTransaction } = useTransactionStore();
   const [searchValue, setSearchValue] = useState("");
   const [displayedTransactions, setDisplayedTransactions] =
     useState(transactions);
@@ -60,7 +62,7 @@ export const TableTransactions = ({ transactions }: TableTransactionsProps) => {
           <TableBody className="flex  flex-col gap-4">
             {displayedTransactions?.map((transaction) => (
               <TableRow
-                className="flex bg-tableRowColor text-base text-textCard justify-between"
+                className="flex bg-tableRowColor text-base text-textCard justify-between items-center"
                 key={transaction.id}
               >
                 <TableCell className="font-medium w-[150px]">
@@ -80,6 +82,9 @@ export const TableTransactions = ({ transactions }: TableTransactionsProps) => {
                 </TableCell>
                 <TableCell className="text-right w-[150px] items-center flex">
                   {new Date(transaction?.createdAt).toLocaleDateString("pt-BR")}
+                </TableCell>
+                <TableCell className="flex text-right items-center  hover:cursor-pointer" onClick={() => removeTransaction(transaction.id)}>
+                  <Trash className="hover:text-red-500" size={16}/>
                 </TableCell>
               </TableRow>
             ))}
