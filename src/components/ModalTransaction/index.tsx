@@ -134,7 +134,7 @@ export const TransactionModal = () => {
                   alt="entrada"
                   className="data-[state=checked]:bg-white"
                 />
-                Saídas
+                Saída
               </RadioGroupItem>
             </div>
           </RadioGroup>

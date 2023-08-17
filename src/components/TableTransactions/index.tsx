@@ -118,10 +118,10 @@ export const TableTransactions = ({ transactions }: TableTransactionsProps) => {
 
                     </DropdownMenuItem>
                     <DropdownMenuSub> 
-                      <DropdownMenuSubTrigger className="flex flex-row w-full hover:cursor-pointer py-1">
+                      <DropdownMenuSubTrigger className="flex flex-row w-full hover:cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
                         <div className="w-full flex flex-row gap-1 items-center">
                           <Pencil  size={16}/> 
-                          <TransactionModalEdit />
+                          <TransactionModalEdit id={transaction.id}/>
                         </div>       
                       </DropdownMenuSubTrigger>
                     </DropdownMenuSub>

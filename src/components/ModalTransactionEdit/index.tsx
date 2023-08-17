@@ -18,36 +18,48 @@ import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useToast } from "@/components/ui/use-toast";
 import { Label } from "@/components/ui/label";
+import useStore from "@/store/transactionsStore";
 
-export const TransactionModalEdit = () => {
-  const { addTransaction } = useTransactionStore();
+interface TransactionModalEditProps{
+  id:string;
+
+}
+
+export const TransactionModalEdit = ({id}:TransactionModalEditProps) => {
+  const transactionsPersistence = useStore(
+    useTransactionStore,
+    (state) => state.transactions,
+  );
+  const transactionFiltred = transactionsPersistence?.find((transaction) => transaction.id === id);
+
+  const { updateTransaction } = useTransactionStore();
   const [open, setOpen] = useState(false);
   const { register, handleSubmit, control, watch, reset } = useForm();
-  const [transactionType, setTransactionType] = useState<"income" | "outcome">(
-    "income",
-  );
+  const initialTransactionType = transactionFiltred ? transactionFiltred.type : "income";
+  const [transactionType, setTransactionType] = useState<"income" | "outcome">(initialTransactionType);
   const { toast } = useToast();
 
-  const onSubmit = (data: any) => {
-    console.log(data, transactionType);
+  console.log({transactionType,initialTransactionType})
 
-    const newTransaction: TransactionProps = {
+  const onSubmit = (data: any) => {
+    console.log({data, transactionType,initialTransactionType,transactionFiltred});
+
+    const editTransaction: TransactionProps = {
       id: Date.now().toString(),
       title: data.title,
       amount: parseFloat(data.amount),
       category: data.category,
-      createdAt: new Date(),
+      createdAt: transactionFiltred? transactionFiltred.createdAt : new Date(),
       type: transactionType,
     };
 
      toast({
-       description: "Transação adicionada",
+       description: "Transação alterada",
       duration: 3000,
     });
 
-    addTransaction(newTransaction);
+    updateTransaction(id,editTransaction);
     setTransactionType("income");
-    reset();
     setOpen(false);
   };
 
@@ -58,7 +70,7 @@ export const TransactionModalEdit = () => {
       </DialogTrigger>
       <DialogContent className="border-none bg-backgroundIngnite p-12">
         <DialogHeader>
-          <DialogTitle className="text-white">Nova transação</DialogTitle>
+          <DialogTitle className="text-white">Editar transação</DialogTitle>
         </DialogHeader>
         <form
           className="mt-6 flex flex-col gap-4"
@@ -72,6 +84,7 @@ export const TransactionModalEdit = () => {
 
           <input
             type="text"
+            defaultValue={transactionFiltred?.title}
             required
             className="flex w-full rounded-lg bg-backgroud2 p-4 text-lg text-searchText"
             placeholder="Insira uma descrição para sua transação"
@@ -82,6 +95,7 @@ export const TransactionModalEdit = () => {
           </Label>
           <input
             type="number"
+            defaultValue={transactionFiltred?.amount}
             required
             {...register("amount")}
             className="flex w-full rounded-lg bg-backgroud2 p-4 text-lg text-searchText"
@@ -91,6 +105,7 @@ export const TransactionModalEdit = () => {
             Categoria
           </Label>
           <input
+          defaultValue={transactionFiltred?.category}
             type="text"
             required
             {...register("category")}
@@ -98,7 +113,7 @@ export const TransactionModalEdit = () => {
             placeholder="Categoria"
           />
 
-          <RadioGroup defaultValue="income" className="flex flex-row">
+          <RadioGroup defaultValue={initialTransactionType} className="flex flex-row">
             <div className="flex items-center space-x-2">
               <RadioGroupItem
                 value="income"
@@ -134,7 +149,7 @@ export const TransactionModalEdit = () => {
                   alt="entrada"
                   className="data-[state=checked]:bg-white"
                 />
-                Saídas
+                Saída
               </RadioGroupItem>
             </div>
           </RadioGroup>
@@ -143,7 +158,7 @@ export const TransactionModalEdit = () => {
               type="submit"
               className="w-full rounded-lg bg-greenDT-default px-5 py-4 font-bold text-white hover:bg-greenDT-light "
             >
-              Cadastrar
+              Salvar alteração
             </button>
           </DialogFooter>
         </form>
