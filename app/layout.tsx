@@ -1,12 +1,7 @@
 import { ReactNode, Suspense } from "react";
 import "./globals.css";
 import { Inter } from "next/font/google";
-// import { Toaster } from "@/components/ui/toaster"
-// import dynamic from "next/dynamic";
-
-// const DynamicToaster = dynamic(() => import("@/components/ui/toaster"), {
-//   loading: () => <p>Loading...</p>,
-// });
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,11 +13,10 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
-      {/* <Toaster /> */}
-       {/* <Suspense fallback={<div>Loading...</div>}>
-        <DynamicToaster />
-      </Suspense>  */}
+      <body className={inter.className}>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }
