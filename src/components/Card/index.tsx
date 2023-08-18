@@ -15,7 +15,7 @@ const Card = ({ title, price, logo, className, ...rest }: cardProps) => {
     <div
       {...rest}
       className={cn(
-        "flex w-full max-w-[364px] flex-col gap-3 rounded-md bg-backgroudCard px-8 py-6",
+        "flex w-full max-w-[364px] min-w-[280px] flex-col gap-3 rounded-md bg-backgroudCard px-8 py-6",
         className,
       )}
     >
