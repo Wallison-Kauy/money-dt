@@ -14,9 +14,9 @@ export default function Home() {
   return (
     <>
       <Header />
-      <div className="text-grayRo container mx-auto  flex w-full max-w-[1220px] flex-col	justify-between gap-12"> 
-          <Sumarry transactions={transactionsPersistence} />
-          <TableTransactions transactions={transactionsPersistence} />
+      <div className="text-grayRo container p-[8px] mx-auto  flex w-full max-w-[1220px] flex-col	justify-between gap-12">
+        <Sumarry transactions={transactionsPersistence} />
+        <TableTransactions transactions={transactionsPersistence} />
       </div>
     </>
   );

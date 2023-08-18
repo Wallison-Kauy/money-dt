@@ -24,7 +24,7 @@ const Sumarry = ({ transactions }: SummaryProps) => {
   let totalOutcomePersistence = totalOutcome ? totalOutcome : 0;
 
   return (
-    <div className="-mt-[80px] flex w-full flex-row gap-8">
+    <div className="-mt-[80px] flex w-full flex-row gap-8 overflow-x-auto">
       <Card
         title="Entradas"
         price={totalIncomePersistence}

@@ -11,7 +11,7 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import { Suspense } from "react";
 
-export default function Toaster() {
+export function Toaster() {
   const { toasts } = useToast();
 
   return (
