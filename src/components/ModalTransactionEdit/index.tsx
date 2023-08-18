@@ -14,7 +14,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 import { TransactionProps, useTransactionStore } from "@/store/transactions";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useToast } from "@/components/ui/use-toast";
 import { Label } from "@/components/ui/label";
@@ -34,9 +34,9 @@ export const TransactionModalEdit = ({id}:TransactionModalEditProps) => {
 
   const { updateTransaction } = useTransactionStore();
   const [open, setOpen] = useState(false);
-  const { register, handleSubmit, control, watch, reset } = useForm();
+  const { register, handleSubmit, } = useForm();
   const initialTransactionType = transactionFiltred ? transactionFiltred.type : "income";
-  const [transactionType, setTransactionType] = useState<"income" | "outcome">(initialTransactionType);
+  const [transactionType, setTransactionType] = useState<"income" | "outcome">("income");
   const { toast } = useToast();
 
   console.log({transactionType,initialTransactionType})
@@ -62,6 +62,10 @@ export const TransactionModalEdit = ({id}:TransactionModalEditProps) => {
     setTransactionType("income");
     setOpen(false);
   };
+
+  useEffect(() => {
+    setTransactionType(initialTransactionType)
+  }, [initialTransactionType]);
 
   return (
     <Dialog >
